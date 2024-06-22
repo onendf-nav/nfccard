@@ -4,10 +4,11 @@ import Navbar from './components/Navbar';
 import { Homepage } from './components/Homepage';
 
 import { Profileshow } from './components/Profileshow';
-
+import {Login} from './components/Login';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import theme from './theme';
+import {Signup} from "./components/Signup"
 
 function App() {
   return (
@@ -19,8 +20,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/' element={<Homepage/>} />
-          <Route path='/login' element={"loginpage"} />
-          <Route path='/signup' element={"signuppgae"} />
+          <Route path='/login' element={<Login/>} />
+          <Route path='/signup' element={<Signup/>} />
           <Route path='/:id/:name' element={<Profileshow/>} />
         </Routes>
       </div>

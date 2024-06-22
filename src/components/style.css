@@ -1,0 +1,8 @@
+.back-image {
+    background-image: url("../tp238-background-03.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-clip: content-box;
+    background-color: rgba(0, 0, 0, 0.267);
+}
