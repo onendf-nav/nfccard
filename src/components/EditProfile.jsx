@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom"
 import { useState, useEffect } from 'react';
 
 import { toast } from 'sonner';
-
+// for testing
 export const EditProfile = () => {
     const navigate = useNavigate()
 
