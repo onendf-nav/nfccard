@@ -3,9 +3,13 @@ import "./style.css"
 import profilepic from "../profilepic.png"
 import addtocontact from "./assets/contact.png"
 import callicon from "./assets/Call@2x.svg"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
 export const Profileshow = () => {
+
+  
+  const navigate = useNavigate()
+
 
   const { id } = useParams()
   console.log(id)
@@ -24,6 +28,9 @@ export const Profileshow = () => {
       credentials: 'include',
     }).then(res => res.json()).then((res => {
       console.log(res.user)
+      if (!res.user) {
+        navigate("/notfound")
+      }
       setuserObject(res.user)
     })).catch(err => {
       console.log(err)
@@ -63,7 +70,7 @@ export const Profileshow = () => {
             <img src={profilepic} alt="" className='rounded-full w-[50%] lg:w-[100%] m-auto ' style={{ border: "2px solid grey" }} />
           </div>
           <div className='text-center text-2xl flex flex-col gap-4 lg:gap-8'>
-            <h1 className='text-3xl lg:text-[40px]' style={{ fontWeight: "700", lineHeight: "32px" }}>{userObject.first_name + userObject.last_name}</h1>
+            <h1 className='text-3xl lg:text-[40px]' style={{ fontWeight: "700", lineHeight: "32px" }}>{userObject.first_name} {userObject.last_name}</h1>
             <h1 className='text-2xl lg:text-[32px]' style={{ fontWeight: "500", lineHeight: "24px" }} >{userObject.department} | {userObject.company_name}</h1>
             <h1 className='text-2xl lg:text-[32px]' style={{ fontWeight: "400", lineHeight: "24px" }} >{userObject.phone_number}</h1>
           </div>

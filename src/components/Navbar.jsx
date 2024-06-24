@@ -9,6 +9,7 @@ import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import { useEffect } from 'react';
 
 import { Link } from "react-router-dom"
 import logo from "../SVGOneNDFLogo.svg"
@@ -27,6 +28,17 @@ function ResponsiveAppBar() {
     };
 
     const [isLogin, setisLogin] = React.useState(false)
+
+    useEffect(() => {
+        if (localStorage.getItem("token")) {
+            setisLogin(false)
+        }
+        else {
+            setisLogin(true)
+        }
+    }, [])
+    
+
 
     
 

@@ -9,6 +9,8 @@ import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import theme from './theme';
 import { Signup } from "./components/Signup"
+import { Notfound } from './components/Notfound';
+
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
               <Route path='/login' element={<Login />} />
               <Route path='/signup' element={<Signup />} />
               <Route path='/:id/:name' element={<Profileshow />} />
+              <Route path='/notfound' element={<Notfound />} />
+              <Route path='*' element={<Notfound />} />
             </Routes>
           </div>
         </div>
