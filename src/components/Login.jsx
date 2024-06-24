@@ -29,7 +29,7 @@ export const Login = () => {
     },
     validationSchema: SignupSchema,
     onSubmit: values => {
-      fetch("http://127.0.0.1:3000/api/nfc_users/sign_in", {
+      fetch("https://staging.onendf.com/api/nfc_users/sign_in", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

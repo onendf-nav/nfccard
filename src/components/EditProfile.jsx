@@ -32,7 +32,7 @@ export const EditProfile = () => {
         if (!id) {
             navigate("/login")
         }
-        fetch(`http://127.0.0.1:3000/api/nfc_users?id=${id}`, {
+        fetch(`https://staging.onendf.com/api/nfc_users?id=${id}`, {
             method: 'get',
             headers: {
                 'Content-Type': 'application/json',
@@ -91,7 +91,7 @@ export const EditProfile = () => {
         enableReinitialize: true,
         validationSchema: SignupSchema,
         onSubmit: values => {
-            fetch("http://127.0.0.1:3000/api/nfc_users", {
+            fetch("https://staging.onendf.com/api/nfc_users", {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',

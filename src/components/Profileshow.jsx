@@ -18,7 +18,7 @@ export const Profileshow = () => {
   const [userObject, setuserObject] = useState({})
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:3000/api/nfc_users?id=${id}`, {
+    fetch(`https://staging.onendf.com/api/nfc_users?id=${id}`, {
       method: 'get',
       headers: {
         'Content-Type': 'application/json',
