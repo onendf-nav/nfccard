@@ -38,7 +38,7 @@ export const Profileshow = () => {
       toast.error("Oops! something went wrong")
       setTimeout(() => {
         navigate("/login")
-      }, 2000  )
+      }, 2000)
       console.log(err)
     })
 
@@ -65,7 +65,9 @@ export const Profileshow = () => {
 
   };
 
-
+  const handleCall = () => {
+    window.location.href = `tel:`+userObject.phone_number; // Replace with your phone number
+  };
 
 
   return (
@@ -87,7 +89,7 @@ export const Profileshow = () => {
                 Add to contact
               </p>
             </button>
-            <button className='w-full h-fit flex items-center justify-center gap-4 text-lg rounded-lg' style={{ border: "1px solid #ffffff" }} >
+            <button className='w-full h-fit flex items-center justify-center gap-4 text-lg rounded-lg' style={{ border: "1px solid #ffffff" }} onClick={handleCall} >
               <img src={callicon} width="30px" height="40px" alt="" className='py-3' />
               <p className='text-white' style={{ fontWeight: "600", lineHeight: "20px" }} >
                 Call Me
