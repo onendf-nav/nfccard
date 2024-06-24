@@ -4,6 +4,7 @@ import profilepic from "../profilepic.png"
 import addtocontact from "./assets/contact.png"
 import callicon from "./assets/Call@2x.svg"
 import { useNavigate, useParams } from "react-router-dom"
+import { toast } from 'sonner';
 
 export const Profileshow = () => {
 
@@ -33,6 +34,10 @@ export const Profileshow = () => {
       }
       setuserObject(res.user)
     })).catch(err => {
+      toast.error("Oops! something went wrong")
+      setTimeout(() => {
+        navigate("/login")
+      }, 2000  )
       console.log(err)
     })
 
