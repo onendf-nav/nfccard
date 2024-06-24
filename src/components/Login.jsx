@@ -32,12 +32,13 @@ export const Login = () => {
         },
         mode: 'cors',
         credentials: 'include',
-        body: {
+        body: JSON.stringify({
           email: values.email,
           password: values.password
-        }
+        })
       }).then(res => res.json()).then(res => {
         alert("working")
+        console.log(res)
       }).catch(err => {
         alert("gya" + err)
       })
