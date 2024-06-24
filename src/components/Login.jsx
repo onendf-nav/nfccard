@@ -2,7 +2,6 @@ import React from 'react'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import "./style.css"
-import { Password } from '@mui/icons-material';
 export const Login = () => {
 
 
@@ -27,6 +26,12 @@ export const Login = () => {
     onSubmit: values => {
       fetch("http://localhost:3000/api/nfc_users/sign_in", {
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        mode: 'cors',
+        credentials: 'include',
         body: {
           email: values.email,
           password: values.password
@@ -38,8 +43,6 @@ export const Login = () => {
       })
     },
   });
-  console.log(formik.errors)
-
 
   return (
     <form onSubmit={formik.handleSubmit}>

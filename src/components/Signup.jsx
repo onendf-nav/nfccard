@@ -2,8 +2,10 @@ import React from 'react'
 import "./style.css"
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import {useNavigate} from "react-router-dom"
 
 export const Signup = () => {
+    const navigate = useNavigate()
 
 
     const SignupSchema = Yup.object().shape({
@@ -65,6 +67,7 @@ export const Signup = () => {
                 })
             }).then(res => res.json()).then(res => {
                 console.log(res)
+                navigate(`/${res.user.id}/${res.user.first_name}`)
             }).catch(err => {
                 console.error(err)
             })
