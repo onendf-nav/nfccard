@@ -41,7 +41,7 @@ export const Signup = () => {
         },
         validationSchema: SignupSchema,
         onSubmit: values => {
-            fetch("http://localhost:3000/api/nfc_users", {
+            fetch("http://127.0.0.1:3000/api/nfc_users", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -64,9 +64,9 @@ export const Signup = () => {
                     gst:values.gst
                 })
             }).then(res => res.json()).then(res => {
-                alert("working")
+                console.table(res)
             }).catch(err => {
-                alert("gya" + err)
+                console.error(err)
             })
         },
     });
@@ -78,9 +78,9 @@ export const Signup = () => {
     return (
         <form onSubmit={formik.handleSubmit}>
 
-            <div className='w-full back-image p-8 h-fit flex items-center justify-center ' >
+            <div className='w-full p-8 h-fit flex items-center justify-center ' >
                 <div className='w-[100%] lg:w-[80%] h-fit py-8 px-8 flex items-center justify-center overflow-auto' style={{ borderRadius: "20px", backgroundColor: "#0000009e", border: "1px solid #ffffff29" }} >
-                    <div className='flex items-center justify-center flex-col gap-6 text-white w-full overflow-auto' >
+                    <div className='flex items-center justify-center flex-col gap-6 text-white w-full overflow-auto p-2' >
                         <h1 className='text-3xl'>Enter your Profile Details</h1>
                         <div className='flex w-full gap-4 flex-col lg:flex-row ' >
                             <input onChange={formik.handleChange} value={formik.values.first_name} className='w-[100%] lg:w-[50%] bg-transparent px-4 text-lg rounded-lg py-4' style={{ border: "2px solid #ffffff80" }} placeholder='Enter First Name' name="first_name" type="text" />

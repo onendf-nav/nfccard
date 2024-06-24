@@ -28,25 +28,7 @@ function ResponsiveAppBar() {
 
     const [isLogin, setisLogin] = React.useState(false)
 
-    const addContact = async () => {
-        var contact = {
-            name: "testing2",
-            phone: "9289012990",
-            email: "john@example.com"
-        };
-        // create a vcard file
-        var vcard = "BEGIN:VCARD\nVERSION:4.0\nFN:" + contact.name + "\nTEL;TYPE=work,voice:" + contact.phone + "\nEMAIL:" + contact.email + "\nEND:VCARD";
-        var blob = new Blob([vcard], { type: "text/vcard" });
-        var url = URL.createObjectURL(blob);
-
-        const newLink = document.createElement('a');
-        newLink.download = contact.name + ".vcf";
-        newLink.textContent = contact.name;
-        newLink.href = url;
-
-        newLink.click();
-
-    };
+    
 
     return (
         <AppBar position="static">
@@ -97,7 +79,7 @@ function ResponsiveAppBar() {
                                 open={Boolean(anchorElUser)}
                                 onClose={handleCloseUserMenu}
                             >
-                                <MenuItem onClick={addContact}>
+                                <MenuItem>
                                     <button id='save-btn' >
                                         <Typography textAlign="center">Edit profile</Typography>
                                     </button>

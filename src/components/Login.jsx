@@ -44,10 +44,10 @@ export const Login = () => {
   return (
     <form onSubmit={formik.handleSubmit}>
 
-      <div className='w-full back-image h-[90vh] flex items-center justify-center ' >
-        <div className='w-[40%] h-[60%] py-8 px-8 flex items-center justify-center' style={{ borderRadius: "20px", backgroundColor: "#0000009e", border: "1px solid #ffffff29" }} >
+      <div className='w-full h-[90vh] flex items-center justify-center ' >
+        <div className=' w-[90%] lg:w-[40%] h-[60%] py-8 px-8 flex items-center justify-center' style={{ borderRadius: "20px", backgroundColor: "#0000009e", border: "1px solid #ffffff29" }} >
           <div className='flex items-center justify-center flex-col gap-6 text-white w-full' >
-            <h1 className='text-6xl'>Login</h1>
+            <h1 className='text-4xl lg:text-6xl'>Login</h1>
             <div className='w-full' >
               <label htmlFor="email" className='text-xl' >Enter Email </label>
               <input onChange={formik.handleChange} value={formik.values.email} type="text" placeholder='example@company.com' name='email' className='w-full h-12 text-xl bg-transparent px-4 rounded-lg' style={{ border: "1px solid #ffffff29" }} />
@@ -57,7 +57,7 @@ export const Login = () => {
               <input onChange={formik.handleChange} value={formik.values.password} type="text" placeholder='********' name='password' className='w-full h-12 text-xl bg-transparent px-4 rounded-lg' style={{ border: "1px solid #ffffff29" }} />
             </div>
             <div className='flex w-full gap-4 items-center justify-center' >
-              <button className='m-auto w-fit px-8 py-4 rounded-lg text-black bg-white' type='submit'>Contine</button>
+              <button className='m-auto w-fit px-8 py-2 rounded-lg text-black bg-white' type='submit'>Continue</button>
             </div>
           </div>
         </div>
