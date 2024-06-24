@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import { Homepage } from './components/Homepage';
 
 import { Profileshow } from './components/Profileshow';
+import { EditProfile } from './components/EditProfile';
 import { Login } from './components/Login';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -33,6 +34,7 @@ function App() {
               <Route path='/' element={<Homepage />} />
               <Route path='/login' element={<Login />} />
               <Route path='/signup' element={<Signup />} />
+              <Route path='/editprofile' element={<EditProfile />} />
               <Route path='/:id/:name' element={<Profileshow />} />
               <Route path='/notfound' element={<Notfound />} />
               <Route path='*' element={<Notfound />} />

@@ -11,12 +11,15 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { useEffect } from 'react';
 
-import { Link } from "react-router-dom"
+import { Link ,useNavigate } from "react-router-dom"
 import logo from "../SVGOneNDFLogo.svg"
 
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
+
+    const navigate = useNavigate()
+
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
     const handleOpenUserMenu = (event) => {
@@ -27,7 +30,7 @@ function ResponsiveAppBar() {
         setAnchorElUser(null);
     };
 
-    const [isLogin, setisLogin] = React.useState(false)
+    const [isLogin, setisLogin] = React.useState(!!localStorage.getItem('token'))
 
     useEffect(() => {
         if (localStorage.getItem("token")) {
@@ -37,10 +40,33 @@ function ResponsiveAppBar() {
             setisLogin(true)
         }
     }, [])
-    
+
+    useEffect(() => {
+        const handleStorageChange = () => {
+            setisLogin(!!localStorage.getItem('token'));
+        };
+
+        // Listen for the custom event
+        window.addEventListener('storageChange', handleStorageChange);
+
+        return () => {
+            window.removeEventListener('storageChange', handleStorageChange);
+        };
+    }, []);
 
 
-    
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+
+        // Emit custom event
+        const event = new Event('storageChange');
+        window.dispatchEvent(event);
+
+        navigate('/login');
+    };
+
+
 
     return (
         <AppBar position="static">
@@ -92,11 +118,13 @@ function ResponsiveAppBar() {
                                 onClose={handleCloseUserMenu}
                             >
                                 <MenuItem>
-                                    <button id='save-btn' >
-                                        <Typography textAlign="center">Edit profile</Typography>
-                                    </button>
+                                    <Link to="/editprofile" >
+                                        <button id='save-btn' >
+                                            <Typography textAlign="center">Edit profile</Typography>
+                                        </button>
+                                    </Link>
                                 </MenuItem>
-                                <MenuItem onClick={handleCloseUserMenu}>
+                                <MenuItem onClick={handleLogout}>
                                     <Typography textAlign="center">Log-out</Typography>
                                 </MenuItem>
 

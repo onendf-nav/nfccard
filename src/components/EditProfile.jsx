@@ -2,13 +2,72 @@ import React from 'react'
 import "./style.css"
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+import { useState, useEffect } from 'react';
 
 import { toast } from 'sonner';
 
-export const Signup = () => {
+export const EditProfile = () => {
     const navigate = useNavigate()
 
+    const [initialValues, setInitialValues] = useState({
+        first_name: '',
+        last_name: '',
+        email: '',
+        user_name: '',
+        company_name: '',
+        phone_number: '',
+        alternative_number: '',
+        website: '',
+        address: '',
+        postal_code: '',
+        gst: '',
+        department: ''
+    });
+
+
+
+    useEffect(() => {
+        const id = localStorage.getItem("user_id")
+        if (!id) {
+            navigate("/login")
+        }
+        fetch(`http://127.0.0.1:3000/api/nfc_users?id=${id}`, {
+            method: 'get',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                id,
+            },
+            mode: 'cors',
+            credentials: 'include',
+        }).then(res => res.json()).then((res => {
+            console.log("responce from api")
+            console.log(res)
+            if (!res.user) {
+                navigate("/notfound")
+            }
+            setInitialValues({
+                first_name: res.user.first_name,
+                last_name: res.user.last_name,
+                email: res.user.email,
+                user_name: res.user.user_name,
+                company_name: res.user.company_name,
+                phone_number: res.user.phone_number,
+                alternative_number: res.user.alternate_phone_number,
+                website: res.user.website_url,
+                address: res.user.address,
+                postal_code: res.user.zip_code,
+                gst: res.user.gst,
+                department: res.user.department,
+            });
+            console.log(initialValues)
+        })).catch(err => {
+            console.log(err)
+        })
+
+
+    }, [])
 
     const SignupSchema = Yup.object().shape({
         first_name: Yup.string()
@@ -27,29 +86,17 @@ export const Signup = () => {
         phone_number: Yup.string()
             .required('Phone Number Required'),
     });
-
     const formik = useFormik({
-        initialValues: {
-            first_name: "",
-            last_name: "",
-            email: "",
-            user_name: "",
-            company_name: "",
-            phone_number: "",
-            alternative_number: "",
-            website: "",
-            address: "",
-            postal_code: "",
-            gst: "",
-
-        },
+        initialValues: initialValues,
+        enableReinitialize: true,
         validationSchema: SignupSchema,
         onSubmit: values => {
             fetch("http://127.0.0.1:3000/api/nfc_users", {
-                method: 'POST',
+                method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Accept': 'application/json'  
+                    'Accept': 'application/json',
+                    'X-CSRF-Token':localStorage.getItem("token")
                 },
                 mode: 'cors',
                 credentials: 'include',
@@ -65,11 +112,11 @@ export const Signup = () => {
                     website_url: values.website,
                     address: values.address,
                     zip_code: values.postal_code,
-                    gst:values.gst
+                    gst: values.gst
                 })
             }).then(res => res.json()).then(res => {
                 console.log(res)
-                localStorage.setItem("user_id",res.user.id)
+                localStorage.setItem("user_id", res.user.id)
                 navigate(`/${res.user.id}/${res.user.first_name}`)
             }).catch(err => {
                 toast.error('Unable to create user . Try Again!');
@@ -78,7 +125,7 @@ export const Signup = () => {
     });
 
 
-
+    console.log(initialValues)
 
 
     return (
@@ -87,7 +134,7 @@ export const Signup = () => {
             <div className='w-full p-8 h-fit flex items-center justify-center ' >
                 <div className='w-[100%] lg:w-[80%] h-fit py-8 px-8 flex items-center justify-center overflow-auto' style={{ borderRadius: "20px", backgroundColor: "#0000009e", border: "1px solid #ffffff29" }} >
                     <div className='flex items-center justify-center flex-col gap-6 text-white w-full overflow-auto p-2' >
-                        <h1 className='text-3xl'>Enter your Profile Details</h1>
+                        <h1 className='text-3xl'>Edit your Profile Details</h1>
                         <div className='flex w-full gap-4 flex-col lg:flex-row ' >
                             <input onChange={formik.handleChange} value={formik.values.first_name} className='w-[100%] lg:w-[50%] bg-transparent px-4 text-lg rounded-lg py-4' style={{ border: "2px solid #ffffff80" }} placeholder='Enter First Name' name="first_name" type="text" />
                             <input onChange={formik.handleChange} value={formik.values.last_name} className='w-[100%] lg:w-[50%] bg-transparent px-4 text-lg rounded-lg py-4' style={{ border: "2px solid #ffffff80" }} placeholder='Enter Last Name' name="last_name" type="text" />

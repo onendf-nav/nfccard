@@ -42,7 +42,10 @@ export const Login = () => {
           password: values.password
         })
       }).then(res => res.json()).then(res => {
+        localStorage.setItem("user_id",res.user.id)
         localStorage.setItem("token",res.authenticity_token)
+        const event = new Event('storageChange');
+        window.dispatchEvent(event);
         navigate(`/${res.user.id}/${res.user.first_name}`)
       }).catch(err => {
         toast.error('Unable to Login. Try Again!');
