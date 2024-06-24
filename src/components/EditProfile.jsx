@@ -149,7 +149,7 @@ export const EditProfile = () => {
                             <input onChange={formik.handleChange} value={formik.values.alternative_number} className='w-[100%] lg:w-[50%] bg-transparent px-4 text-lg rounded-lg py-4' style={{ border: "2px solid #ffffff80" }} placeholder='Enter Alternative Number' name="alternative_number" type="text" />
                         </div>
                         <div className='flex w-full gap-4 flex-col lg:flex-row' >
-                            <input onChange={formik.handleChange} value={formik.values.email} className='w-[100%] lg:w-[50%] bg-transparent px-4 text-lg rounded-lg py-4' style={{ border: "2px solid #ffffff80" }} placeholder='Enter Email' name="email" type="text" />
+                            <input onChange={formik.handleChange} value={formik.values.email} className='w-[100%] lg:w-[50%] bg-grey px-4 text-lg rounded-lg py-4 text-grey ' style={{ border: "2px solid grey" }} placeholder='Enter Email' name="email" type="text" disabled/>
                             <input onChange={formik.handleChange} value={formik.values.website} className='w-[100%] lg:w-[50%] bg-transparent px-4 text-lg rounded-lg py-4' style={{ border: "2px solid #ffffff80" }} placeholder='Enter WebsiteURL' name="website" type="text" />
                         </div>
                         <div className='flex w-full gap-4 flex-col lg:flex-row' >
@@ -178,7 +178,7 @@ export const EditProfile = () => {
                             {formik.errors.phone_number && <p>*{formik.errors.phone_number}</p>}
                         </div>
                         <div className='flex w-full gap-4 flex-col lg:flex-row items-center justify-center' >
-                            <button className='m-auto w-fit px-8 py-4 rounded-lg text-black bg-white' type='submit'>Register</button>
+                            <button className='m-auto w-fit px-8 py-4 rounded-lg text-black bg-white' type='submit'>Edit Profile</button>
                         </div>
                     </div>
                 </div>

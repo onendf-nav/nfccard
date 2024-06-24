@@ -8,7 +8,7 @@ import { toast } from 'sonner';
 
 export const Profileshow = () => {
 
-  
+
   const navigate = useNavigate()
 
 
@@ -30,7 +30,8 @@ export const Profileshow = () => {
     }).then(res => res.json()).then((res => {
       console.log(res.user)
       if (!res.user) {
-        navigate("/notfound")
+        toast.info("No user found")
+        navigate("/login")
       }
       setuserObject(res.user)
     })).catch(err => {

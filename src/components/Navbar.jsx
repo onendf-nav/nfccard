@@ -10,8 +10,9 @@ import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { useEffect } from 'react';
+import { toast } from 'sonner';
 
-import { Link ,useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import logo from "../SVGOneNDFLogo.svg"
 
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -40,12 +41,12 @@ function ResponsiveAppBar() {
             setisLogin(true)
         }
     }, [])
-    
+
     useEffect(() => {
         const handleStorageChange = () => {
-            alert("i runn ")
             setisLogin(!!localStorage.getItem('token'));
             window.location.reload()
+            navigate("/" + localStorage.getItem("user_id") + "/user")
         };
 
         // Listen for the custom event
@@ -57,6 +58,23 @@ function ResponsiveAppBar() {
 
     const handleLogout = () => {
         localStorage.removeItem('token');
+
+        fetch("http://127.0.0.1:3000/api/nfc_users", {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'X-CSRF-Token': localStorage.getItem("token")
+            },
+            mode: 'cors',
+            credentials: 'include',
+        }).then(res => res.json()).then(res => {
+            console.log(res)
+            localStorage.setItem("user_id", res.user.id)
+            navigate(`/${res.user.id}/${res.user.first_name}`)
+        }).catch(err => {
+            toast.error('Unable to edit user. Try Again!');
+        })
 
         // Emit custom event
         const event = new Event('storageChange');

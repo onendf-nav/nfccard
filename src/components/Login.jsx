@@ -66,7 +66,7 @@ export const Login = () => {
             </div>
             <div className='w-full' >
               <label htmlFor="password" className='text-xl'>Enter Password</label>
-              <input onChange={formik.handleChange} value={formik.values.password} type="text" placeholder='********' name='password' className='w-full h-12 text-xl bg-transparent px-4 rounded-lg' style={{ border: "1px solid #ffffff29" }} />
+              <input onChange={formik.handleChange} value={formik.values.password} type="password" placeholder='********' name='password' className='w-full h-12 text-xl bg-transparent px-4 rounded-lg' style={{ border: "1px solid #ffffff29" }} />
             </div>
             <div className='flex w-full gap-4 items-center justify-center' >
               <button className='m-auto w-fit px-8 py-2 rounded-lg text-black bg-white' type='submit'>Continue</button>
