@@ -40,18 +40,17 @@ function ResponsiveAppBar() {
             setisLogin(true)
         }
     }, [])
-
+    
     useEffect(() => {
         const handleStorageChange = () => {
+            alert("i runn ")
             setisLogin(!!localStorage.getItem('token'));
+            window.location.reload()
         };
 
         // Listen for the custom event
         window.addEventListener('storageChange', handleStorageChange);
 
-        return () => {
-            window.removeEventListener('storageChange', handleStorageChange);
-        };
     }, []);
 
 
