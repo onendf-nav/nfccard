@@ -25,7 +25,7 @@ export const Login = () => {
     },
     validationSchema: SignupSchema,
     onSubmit: values => {
-      fetch("http://localhost:3000/api/nfc_users", {
+      fetch("http://localhost:3000/api/nfc_users/sign_in", {
         method: 'POST',
         body: {
           email: values.email,

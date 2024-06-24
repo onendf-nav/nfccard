@@ -64,7 +64,7 @@ export const Signup = () => {
                     gst:values.gst
                 })
             }).then(res => res.json()).then(res => {
-                console.table(res)
+                console.log(res)
             }).catch(err => {
                 console.error(err)
             })
