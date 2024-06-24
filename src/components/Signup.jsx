@@ -4,6 +4,8 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import {useNavigate} from "react-router-dom"
 
+import { toast } from 'sonner';
+
 export const Signup = () => {
     const navigate = useNavigate()
 
@@ -69,7 +71,7 @@ export const Signup = () => {
                 console.log(res)
                 navigate(`/${res.user.id}/${res.user.first_name}`)
             }).catch(err => {
-                console.error(err)
+                toast.error('Unable to create user . Try Again!');
             })
         },
     });

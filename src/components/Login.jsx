@@ -2,8 +2,13 @@ import React from 'react'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import "./style.css"
-export const Login = () => {
 
+import { toast } from 'sonner';
+
+import {useNavigate} from "react-router-dom"
+
+export const Login = () => {
+  const navigate = useNavigate()
 
 
   const SignupSchema = Yup.object().shape({
@@ -37,10 +42,10 @@ export const Login = () => {
           password: values.password
         })
       }).then(res => res.json()).then(res => {
-        alert("working")
-        console.log(res)
+        localStorage.setItem("token",res.authenticity_token)
+        navigate(`/${res.user.id}/${res.user.first_name}`)
       }).catch(err => {
-        alert("gya" + err)
+        toast.error('Unable to Login. Try Again!');
       })
     },
   });

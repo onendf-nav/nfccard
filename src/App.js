@@ -10,6 +10,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import theme from './theme';
 import { Signup } from "./components/Signup"
 import { Notfound } from './components/Notfound';
+import { Toaster } from 'sonner';
 
 
 function App() {
@@ -19,6 +20,14 @@ function App() {
       <BrowserRouter>
         <div>
           <Navbar />
+          <Toaster toastOptions={{
+            style: {
+              background: 'black',
+              color:'white',
+              borderColor:'white'
+            },
+            
+          }} position="top-center" />
           <div className='back-image'>
             <Routes>
               <Route path='/' element={<Homepage />} />
