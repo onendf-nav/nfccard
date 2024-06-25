@@ -45,7 +45,7 @@ function ResponsiveAppBar() {
     useEffect(() => {
         const handleStorageChange = () => {
             setisLogin(!!localStorage.getItem('token'));
-            navigate("/" + localStorage.getItem("user_id") + "/user")
+            navigate("/" + localStorage.getItem("user_id") + "/" +localStorage.getItem("user_name"))
             window.location.reload()
         };
 

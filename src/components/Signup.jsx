@@ -2,7 +2,7 @@ import React from 'react'
 import "./style.css"
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 import { toast } from 'sonner';
 
@@ -49,7 +49,7 @@ export const Signup = () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Accept': 'application/json'  
+                    'Accept': 'application/json'
                 },
                 mode: 'cors',
                 credentials: 'include',
@@ -65,11 +65,15 @@ export const Signup = () => {
                     website_url: values.website,
                     address: values.address,
                     zip_code: values.postal_code,
-                    gst:values.gst
+                    gst: values.gst
                 })
             }).then(res => res.json()).then(res => {
                 console.log(res)
-                localStorage.setItem("user_id",res.user.id)
+                localStorage.setItem("user_id", res.user.id)
+                localStorage.setItem("user_name", res.user.first_name)
+                localStorage.setItem("token", res.authenticity_token)
+                const event = new Event('storageChange');
+                window.dispatchEvent(event);
                 navigate(`/${res.user.id}/${res.user.first_name}`)
             }).catch(err => {
                 toast.error('Unable to create user . Try Again!');
