@@ -58,6 +58,8 @@ function ResponsiveAppBar() {
 
     const handleLogout = () => {
         localStorage.removeItem('token');
+        localStorage.removeItem('user_name');
+
 
         fetch("https://staging.onendf.com/api/nfc_users", {
             method: 'DELETE',
