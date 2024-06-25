@@ -5,6 +5,7 @@ import addtocontact from "./assets/contact.png"
 import callicon from "./assets/Call@2x.svg"
 import { useNavigate, useParams } from "react-router-dom"
 import { toast } from 'sonner';
+import linkpng from "./Vector.png"
 
 export const Profileshow = () => {
 
@@ -66,16 +67,30 @@ export const Profileshow = () => {
   };
 
   const handleCall = () => {
-    window.location.href = `tel:`+userObject.phone_number; // Replace with your phone number
+    window.location.href = `tel:` + userObject.phone_number; // Replace with your phone number
+  };
+
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(`https://onendf.vercel.app/${localStorage.getItem("user_id")}/${localStorage.getItem("user_name")}`).then(() => {
+      toast.success('Link Copied');
+    }).catch(err => {
+      console.error('Could not copy text: ', err);
+    });
   };
 
 
   return (
     <div className='w-full  h-[90vh] flex items-center justify-center ' >
       <div className='w-[90%] lg:w-[30%] h-[80%] py-8 px-8 flex items-center justify-center' style={{ borderRadius: "20px", backgroundColor: "#0000009e", border: "1px solid #ffffff29" }} >
-        <div className='flex items-center justify-center flex-col gap-6' >
-          <div>
-            <img src={profilepic} alt="" className='rounded-full w-[50%] lg:w-[100%] m-auto ' style={{ border: "2px solid grey" }} />
+        <div className='flex items-center justify-center flex-col gap-6 w-full ' >
+          <div className='w-full' >
+            {localStorage.getItem("user_id") && localStorage.getItem("user_name") && 
+              <div className='flex w-full items-center justify-end  gap-2 -translate-y-6 translate-x-4'  onClick={copyToClipboard}>
+                <img src={linkpng} width="16px" alt="" /> <span>Copy link</span>
+              </div>
+            }
+            <img src={profilepic} alt="" className='rounded-full w-[50%] lg:w-[40%] m-auto ' style={{ border: "2px solid grey" }} />
           </div>
           <div className='text-center text-2xl flex flex-col gap-4 lg:gap-8'>
             <h1 className='text-3xl lg:text-[40px]' style={{ fontWeight: "700", lineHeight: "32px" }}>{userObject.first_name} {userObject.last_name}</h1>
