@@ -136,8 +136,8 @@ export const EditProfile = () => {
                     <div className='flex items-center justify-center flex-col gap-6 text-white w-full overflow-auto p-2' >
                         <h1 className='text-3xl'>Edit your Profile Details</h1>
                         <div className='flex w-full gap-4 flex-col lg:flex-row ' >
-                            <input onChange={formik.handleChange} value={formik.values.first_name} className='w-[100%] lg:w-[50%] bg-transparent px-4 text-lg rounded-lg py-4' style={{ border: "2px solid #ffffff80" }} placeholder='Enter First Name' name="first_name" type="text" />
-                            <input onChange={formik.handleChange} value={formik.values.last_name} className='w-[100%] lg:w-[50%] bg-transparent px-4 text-lg rounded-lg py-4' style={{ border: "2px solid #ffffff80" }} placeholder='Enter Last Name' name="last_name" type="text" />
+                            <input onChange={formik.handleChange} value={formik.values.first_name} className='w-[100%] lg:w-[50%] bg-grey px-4 text-lg rounded-lg py-4' style={{ border: "2px solid #ffffff80" }} placeholder='Enter First Name' name="first_name" type="text" disabled/>
+                            <input onChange={formik.handleChange} value={formik.values.last_name} className='w-[100%] lg:w-[50%] bg-grey px-4 text-lg rounded-lg py-4' style={{ border: "2px solid #ffffff80" }} placeholder='Enter Last Name' name="last_name" type="text" disabled/>
                         </div>
                         <input onChange={formik.handleChange} value={formik.values.user_name} className='w-full bg-transparent px-4 text-lg rounded-lg py-4' style={{ border: "2px solid #ffffff80" }} placeholder='Enter User Name' name="user_name" type="text" />
                         <div className='flex w-full gap-4 flex-col lg:flex-row' >
