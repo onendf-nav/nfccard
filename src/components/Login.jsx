@@ -48,7 +48,7 @@ export const Login = () => {
         window.dispatchEvent(event);
         navigate(`/${res.user.id}/${res.user.first_name}`)
       }).catch(err => {
-        toast.error('Unable to Login. Try Again!');
+        toast.error('Invalid Email or Password. Try Again!');
       })
     },
   });
