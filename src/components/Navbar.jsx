@@ -71,9 +71,9 @@ function ResponsiveAppBar() {
         }).then(res => res.json()).then(res => {
             console.log(res)
             localStorage.setItem("user_id", res.user.id)
-            navigate(`/${res.user.id}/${res.user.first_name}`)
+            navigate(`/login`)
         }).catch(err => {
-            toast.error('Unable to edit user. Try Again!');
+            toast.error('Server Error. Try Again!');
         })
 
         // Emit custom event
